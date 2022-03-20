@@ -71,11 +71,11 @@ The following are the development guidelines considered in this open-source proj
 
 This repository has the following branches:
 
--  **master:** the main branch that keeps only tested production code.
+-  **main:** the branch that keeps only tested production code.
 -  **dev:** used by developers to integrate and share their local code.
 - **feature\_*\<name\>***: local branch created by each developer to implement a new feature.
 
->  **Note:** The expected development workflows are **feature\_*\<name\>*** -> **dev** -> **master**.
+>  **Note:** The expected development workflows are **feature\_*\<name\>*** -> **dev** -> **main**.
 
 ## Commits
 
