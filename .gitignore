@@ -1,0 +1,6 @@
+/datasets/*/
+/outputs
+/venv
+/.idea
+/ffmpeg
+/source/__pycache__
