@@ -25,6 +25,7 @@ def convert_to_wav(audio_filepath):
 
 def delete_audio_file(audio_filepath):
     """Deletes the specified audio file."""
+    os.chmod(audio_filepath, 0o777)
     os.remove(audio_filepath)
 
 

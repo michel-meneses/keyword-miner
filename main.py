@@ -36,18 +36,18 @@ def get_config(config_filepath):
 def run(config):
     general_config = config['General']
 
-    input_ds_name = general_config.get('input_dataset_name')
+    input_ds_name = general_config.get('input_ds_name')
     input_dir_path = Path(general_config.get('input_dir_path'))
     input_lexicon_path = Path(general_config.get('input_lexicon_path'))
     output_dir_path = Path(general_config.get('output_dir_path'))
     language = general_config.get('language')
     clear_cache = general_config.getboolean('clear_cache')
-
+    
     assert input_dir_path and output_dir_path, "You must inform the input and output dir paths in the config."
 
-    if input_dir_path == 'librispeech':
+    if input_ds_name == "librispeech":
         dataset = TranscribedDatasetLibriSpeech(input_dir_path, language)
-    elif input_dir_path == 'mozilla':
+    elif input_ds_name == 'mozilla':
         dataset = TranscribedDatasetMozilla(input_dir_path, language)
     else:
         raise NameError(f'Input dataset name not supported yet: {input_ds_name}')
