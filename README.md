@@ -18,28 +18,22 @@ Given a speech audio file and its transcript, KeywordMiner runs [MFA](https://gi
 
 ## How to use
 
-- [optional] Create a virtual environment using some tool of your choice (*e.g.*, **conda** or **pip-env**)
+The following are the steps to segment spoken words from [Librispeech's dev-clean corpus](https://www.openslr.org/resources/12/dev-clean.tar.gz) via KeywordMiner:
 
-- [optional] Activate the previous virtual environment
+1) Create a virtual environment with MFA via conda: `conda create -n keyword-miner montreal-forced-aligner`
 
-- Install the requirements: `pip install -r requirements.txt --upgrade`
+2) Activate the previous virtual environment: `conda activate keyword-miner`
 
-- Install pretrained acoustic models as [specified by MFA](https://montreal-forced-aligner.readthedocs.io/en/latest/pretrained_models.html#pretrained-models): `mfa download acoustic <language_id>`
+3) Install the requirements: `pip install -r requirements.txt --upgrade`
 
-- [optional] Validate alignment setup: `mfa validate <corpus_directory> <dictionary_path> <[optional_acoustic_model_path]>`
+4) Install the pretrained acoustic model: `mfa model download acoustic english_us_arpa`
 
-- Run the main script: `python main.py`
+5) Install its respective dictionary: `mfa model download dictionary english_us_arpa`
 
-The validation step aims to help the developer determine the success of the installation, but it is not a required part of the setup process.
+6) Set `input_dir_path` in `inputs/configs/local_librispeech.conf` as the local path to Librispeech's corpus
+7) Run the main script: `python main.py`
 
-### Language ID
-If no language ID is passed as an argument, a list of available IDs will be prompted, as shown in the screenshot below:
-
-![](available-languages.png)
-
-When installing a pre-trained model, one of the IDs must be provided according to the intended language or preferred alternative model to be used.
-
-*i.e.*, for a model trained in English, one could use: `mfa download acoustic english`
+To run KeywordMiner with input corpus in other languages, please consult [MFA's models page](https://mfa-models.readthedocs.io/en/latest/index.html) and check the available pre-trained acoustic models and dictionaries.
 
 ## System design
 ### Folders

@@ -12,7 +12,6 @@ joblib>=1.0.1
 keyring>=23.2.1
 librosa>=0.8.1
 llvmlite>=0.36.0
-montreal-forced-aligner
 numba>=0.54.0
 numpy==1.20.3
 onetimepass>=1.0.1
