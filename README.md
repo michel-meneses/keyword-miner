@@ -1,4 +1,9 @@
-# Welcome to Keyword Miner!
+# Instruction for running Keyword Miner on python 3.8
+
+This repository is a fork of the original **Keyword Miner** framework publish on [GitHub](https://github.com/michel-meneses/keyword-miner). It describe a specific software configuration for running the **Keyword Miner** efectively.
+
+
+# Description
 
 This repository contains ***an alternative and independent implementation*** of the framework **Keyword Miner**, originally discussed in the paper [SiDi KWS: A Large-Scale Multilingual Dataset for Keyword Spotting](https://www.isca-speech.org/archive/interspeech_2022/meneses22_interspeech.html). The goal of this repository is to allow the keyword-spotting community to export large sets of single-spoken keyword audio files based on the forced alignment of transcribed input speech recordings, as described in that paper.
 
@@ -83,7 +88,3 @@ This repository is available under the MIT license. In case you publish any rese
     doi={10.21437/Interspeech.2022-394}    
 }
 ```
-
-# Support
-
-If you have any questions about this project, please open an issue ticket on this repository or contact me via e-mail: michel.conrado.meneses@gmail.com
