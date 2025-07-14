@@ -18,20 +18,23 @@ Given a speech audio file and its transcript, KeywordMiner runs [MFA](https://gi
 
 ## How to use
 
-The following are the steps to segment spoken words from [Librispeech's dev-clean corpus](https://www.openslr.org/resources/12/dev-clean.tar.gz) via KeywordMiner:
+The following are the steps to segment spoken words from [Librispeech's dev-clean corpus](https://www.openslr.org/resources/12/dev-clean.tar.gz) via KeywordMiner 2.2.17 using python 3.8 in Ubuntu 20.04:
 
-1) Create a virtual environment with MFA via conda: `conda create -n keyword-miner montreal-forced-aligner`
+1) Create a virtual environment with MFA via conda: `conda create -n keyword-miner -c conda-forge montreal-forced-aligner==2.2.17 python=3.8`
 
-2) Activate the previous virtual environment: `conda activate keyword-miner`
+2) If you don't have openBLAS library already installed: `conda install -c conda-forge openblas`
 
-3) Install the requirements: `pip install -r requirements.txt --upgrade`
+3) Activate the previous virtual environment: `conda activate keyword-miner`
 
-4) Install the pretrained acoustic model: `mfa model download acoustic english_us_arpa`
+4) Install the requirements: `pip install textgrid==1.5`
 
-5) Install its respective dictionary: `mfa model download dictionary english_us_arpa`
+5) Install the pretrained acoustic model: `mfa model download acoustic english_us_arpa`
 
-6) Set `input_dir_path` in `inputs/configs/local_librispeech.conf` as the local path to Librispeech's corpus
-7) Run the main script: `python main.py`
+6) Install its respective dictionary: `mfa model download dictionary english_us_arpa`
+
+7) Set `input_dir_path` and `output_dir_path` in `inputs/configs/local_librispeech.conf` as the local path to Librispeech's corpus and desired output directory, respectively.
+
+8) Run the main script: `python main.py --config 'inputs/configs/local_librispeech.conf'`
 
 To run KeywordMiner with input corpus in other languages, please consult [MFA's models page](https://mfa-models.readthedocs.io/en/latest/index.html) and check the available pre-trained acoustic models and dictionaries.
 

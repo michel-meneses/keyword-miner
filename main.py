@@ -7,7 +7,8 @@ from datasets.transcribed_dataset_librispeech import TranscribedDatasetLibriSpee
 from datasets.transcribed_dataset_mozilla import TranscribedDatasetMozilla
 from source.aligner import Aligner
 from source.segmenter import Segmenter
-
+import atexit
+import concurrent.futures.process
 
 def print_banner():
     banner = r"""
@@ -65,6 +66,7 @@ def run(config):
 
 
 if __name__ == '__main__':
+    atexit.unregister(concurrent.futures.process._python_exit)
     print_banner()
     args = get_args()
     config_args = get_config(args.get('config'))
