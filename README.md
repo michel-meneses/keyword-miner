@@ -4,34 +4,33 @@ This repository contains ***an alternative and independent implementation*** of 
 
 # Overview
 
-Given a speech audio file and its transcript, KeywordMiner runs [MFA](https://github.com/MontrealCorpusTools/Montreal-Forced-Aligner) to force-align that transcript text to the recorded speech, which outputs the start and end times of each spoken word. Based on that information, KeywordMiner segments each keyword as an individual labeled audio file. The following sessions presented more details about this implementation of KeywordMiner.
+Given a speech audio file and its transcript, KeywordMiner runs [MFA](https://github.com/MontrealCorpusTools/Montreal-Forced-Aligner) to force-align that transcript text to the recorded speech, which outputs the start and end times of each spoken word. Based on that information, KeywordMiner segments each keyword as an individual labeled audio file. The following sessions present more details about this implementation of KeywordMiner.
 
 ## Specifications
 
 -  **Datasets**: The audio files to be segmented must accompany an associated text file with the transcript of the speech recording.
 
--  **Supported languages**: Any of the same languages supported by the MFA models, as prompted on [this list](#language-id).
+-  **Supported languages**: Any of the same languages supported by the MFA models, as prompted on [this list](/available-languages.png).
 
 -  **Audio file format**: Any (audio) format is supported since the files will be converted to .wav format.
 
->  **Note**: The input datasets must be compatible with one of the structure formats featured by the implemented TranscribedDataset interface (*i.e.* LibriSpeech or Mozilla Common Voice).
+> [!IMPORTANT]
+>  The input datasets must be compatible with one of the structure formats featured by the implemented TranscribedDataset interface (*i.e.* LibriSpeech or Mozilla Common Voice).
 
 ## How to use
 
-The following are the steps to segment spoken words from [Librispeech's dev-clean corpus](https://www.openslr.org/resources/12/dev-clean.tar.gz) via KeywordMiner:
+The following are the steps to segment spoken words from [Librispeech's dev-clean corpus](https://www.openslr.org/resources/12/dev-clean.tar.gz) via KeywordMiner (`Python 3.11.5`, `Debian 13`):
 
-1) Create a virtual environment with MFA via conda: `conda create -n keyword-miner montreal-forced-aligner`
+1) Create a virtual environment with MFA via conda: `conda create -n keyword-miner montreal-forced-aligner=3.3.4 pandas=2.3.1 TextGrid=1.5`
 
 2) Activate the previous virtual environment: `conda activate keyword-miner`
 
-3) Install the requirements: `pip install -r requirements.txt --upgrade`
+3) Install the pretrained acoustic model: `mfa model download acoustic english_us_arpa`
 
-4) Install the pretrained acoustic model: `mfa model download acoustic english_us_arpa`
+4) Install its respective dictionary: `mfa model download dictionary english_us_arpa`
 
-5) Install its respective dictionary: `mfa model download dictionary english_us_arpa`
-
-6) Set `input_dir_path` in `inputs/configs/local_librispeech.conf` as the local path to Librispeech's corpus
-7) Run the main script: `python main.py`
+5) Set `input_dir_path` in `inputs/configs/local_librispeech.conf` as the local path to Librispeech's corpus
+6) Run the main script: `python main.py`
 
 To run KeywordMiner with input corpus in other languages, please consult [MFA's models page](https://mfa-models.readthedocs.io/en/latest/index.html) and check the available pre-trained acoustic models and dictionaries.
 
@@ -57,7 +56,8 @@ Those folders have the following properties:
 
 -  **source/**: holds this project's main source code.
 
->  **Note:** This project also creates a local directory named ***outputs***, which is listed in file ***.gitignore***. That directory's subfolders hold the outputs of this project (*e.g.*, segmented audio files).
+> [!NOTE]
+>  This project also creates a local directory named ***outputs***, which is listed in file ***.gitignore***. That directory's subfolders hold the outputs of this project (*e.g.*, segmented audio files).
 
 ### Entities
 Currently, this project considers three main entities: TranscribedDataset, Aligner, Segmenter. All of them are shortly described below:

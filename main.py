@@ -22,7 +22,7 @@ def get_args():
     parser = argparse.ArgumentParser(
         description="Arguments to run Keyword Miner")
     parser.add_argument('-c', '--config', type=str,
-                        default='inputs/configs/local_mozilla.conf',
+                        default='inputs/configs/local_librispeech.conf',
                         help="Path to a config file.")
     return vars(parser.parse_args(args=sys.argv[1:]))
 
